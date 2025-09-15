@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Scanner;
 
-//User Story 1.1: Student Registration
 public class RegistrationPage {
 
+	// User Story 1.1: Student Registration
 	private static final String DB_Driver = "com.mysql.cj.jdbc.Driver";
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/quizemastertables";
 	private static final String DB_Username = "root";
@@ -72,7 +72,7 @@ public class RegistrationPage {
 			} catch (Exception se) {
 				se.printStackTrace();
 			}
-  
+
 		}
 		sc.close();
 	}
