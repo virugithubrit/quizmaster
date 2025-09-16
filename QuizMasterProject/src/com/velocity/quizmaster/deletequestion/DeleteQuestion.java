@@ -1,10 +1,11 @@
-package com.velocity.quizmaster.delete;
+package com.velocity.quizmaster.deletequestion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class DeleteQuestion {
@@ -18,10 +19,10 @@ public class DeleteQuestion {
 	public static Connection getConnection() throws ClassNotFoundException {
 		Connection conn = null;
 		try {
-			// load the driver
+			// Loading the driver
 			Class.forName(DB_DRIVER);
 
-			// establish the connection
+			// Establish connection
 			conn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 		} catch (SQLException e) {
 			System.out.println("Connection failed: " + e.getMessage());
@@ -35,18 +36,18 @@ public class DeleteQuestion {
 
 		try (Connection conn = getConnection()) {
 
-			System.out.print("Enter Question ID to delete: ");
+			System.out.print("Enter Question Id to delete: ");
 			int questionId = scanner.nextInt();
 			scanner.nextLine(); // for new line
 
 			// check if question exists
 			String checkQuery = "select * from question where id=?";
 			PreparedStatement psCheck = conn.prepareStatement(checkQuery);
-			psCheck.setInt(1, questionId);
+			psCheck.setInt(1, questionId);// set questionId in the query
 			ResultSet rs = psCheck.executeQuery();
 
 			if (!rs.next()) {// if no record found
-				System.out.println("Question with ID " + questionId + " does not exist.");
+				System.out.println("Question with Id " + questionId + " does not exist.");
 				return;
 			}
 
@@ -54,23 +55,31 @@ public class DeleteQuestion {
 			String confirm = scanner.next();
 			if (confirm.equalsIgnoreCase("Y")) {
 				String deleteQuery = "delete from question where id=?";
+
 				PreparedStatement psDelete = conn.prepareStatement(deleteQuery);
-				psDelete.setInt(1, questionId);
+				psDelete.setInt(1, questionId);// set the id for deletion
+
+				// Submit SQL statement to Database
 				int rows = psDelete.executeUpdate();
 
-				if (rows > 0)//row was deleted.
+				// Process the results
+				if (rows > 0)// one row was deleted.
 					System.out.println("Question deleted successfully!");
 				else
 					System.out.println("Failed to delete question.");
+
 			} else {
 				System.out.println("Deletion cancelled.");// if user don't want to delete question
 			}
 
 		} catch (SQLException e) {
 			System.out.println("Database Error: " + e.getMessage());
+		} catch (InputMismatchException e) {
+			System.out.println("Error: Please enter only Id.");
+		} finally {
+			scanner.close();
 		}
 
-		scanner.close();
 	}
 
 	public static void main(String[] args) throws ClassNotFoundException {
