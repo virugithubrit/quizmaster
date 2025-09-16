@@ -3,17 +3,20 @@ package com.register;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Scanner;
+
+import com.sun.org.apache.bcel.internal.generic.Select;
 
 public class RegistrationPage {
 
 	// User Story 1.1: Student Registration
 	private static final String DB_Driver = "com.mysql.cj.jdbc.Driver";
-	private static final String DB_URL = "jdbc:mysql://localhost:3306/quizemastertables";
-	private static final String DB_Username = "root";
-	private static final String DB_Password = "root";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/quizmaster";
+	private static final String DB_Username = "root"; // mysql workbench username
+	private static final String DB_Password = "Root";// mysql workbench password
 
 	public Connection getConnection() {
 		Connection con = null;
@@ -29,11 +32,40 @@ public class RegistrationPage {
 
 	}
 
+	// method to check if username already exists or not
+	public boolean isUsernameExists(String username) {
+		boolean exists = false;
+
+		try {
+			Connection conn = getConnection();
+			PreparedStatement ps = conn.prepareStatement("Select COUNT(*) from student where username = ?");
+			ps.setString(1, username.trim());
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next() && rs.getInt(1) > 0) {
+				exists = true;
+			}
+
+			rs.close();
+			ps.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return exists;
+	}
+
 	public void saveStudent(StudentRegisterData srd) {
 		Connection con = getConnection();
 		Scanner sc = new Scanner(System.in);
 		while (true) {
+
 			try {
+				while (isUsernameExists(srd.getUserName())) {
+					System.out.println("This username is already exists. Please enter a different username");
+					srd.setUserName(sc.nextLine().trim());
+				}
 				// create prepared statement
 				PreparedStatement ps = con.prepareStatement(
 						"insert into student(first_name,last_name,username,password,city,email,mobile)values(?,?,?,?,?,?,?)");

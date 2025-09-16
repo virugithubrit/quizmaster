@@ -57,9 +57,11 @@ public class InputStudentdata {
 				System.out.println("User name must contain letters,digits,dot(.) and underScore(_). Please try again.");
 				continue;
 			}
+
 			break; // valid input
 		}
 		srd.setUserName(userName);
+
 		String pass = null;
 		while (true) {
 			System.out.println("Enter Password : ");
@@ -129,6 +131,7 @@ public class InputStudentdata {
 			break;
 		}
 		srd.setMobileNumber(mobile);
+
 		RegistrationPage rp = new RegistrationPage();
 		System.out.println("I am from input");
 		rp.saveStudent(srd);
