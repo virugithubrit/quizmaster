@@ -9,7 +9,6 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class EditQuestion {
-
 	private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/quizmaster";
 	private static final String DB_USERNAME = "root";
@@ -68,7 +67,7 @@ public class EditQuestion {
 			System.out.println("Enter New Correct Option (1-4): ");
 			int correct = scanner.nextInt();
 			// correct option must be between 1 and 4
-			if (correct < 1 || correct > 4) {
+			if (correct <= 1 || correct >= 4) {
 				System.out.println("Invalid choice! Correct option must be between 1 and 4.");
 				return; // stop execution without updating
 			}
@@ -109,4 +108,5 @@ public class EditQuestion {
 	public static void main(String[] args) {
 		editExistingQuestion();
 	}
+
 }

@@ -85,4 +85,5 @@ public class DeleteQuestion {
 	public static void main(String[] args) throws ClassNotFoundException {
 		deleteQuestionById();
 	}
+
 }
