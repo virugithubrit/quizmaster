@@ -2,7 +2,7 @@ package com.velocity.quizmaster.addquestions;
 
 import java.util.Scanner;
 
-public class TakeInput {
+public class TakeInput {//Add New Questions (User Story 3.1)
 
 	public void getInput() {
 

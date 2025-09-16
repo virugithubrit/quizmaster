@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-public class AddQuestion  {
+public class AddQuestion  {//Add New Questions (User Story 3.1)
 
 	private static final String DB_Driver = "com.mysql.cj.jdbc.Driver";
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/quizmaster";

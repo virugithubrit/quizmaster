@@ -1,6 +1,6 @@
 package com.velocity.quizmaster.addquestions;
 
-public class Questions {
+public class Questions {//Add New Questions (User Story 3.1)
 
 	
 	private String questionText;
