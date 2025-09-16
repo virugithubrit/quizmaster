@@ -2,10 +2,10 @@ package com.register;
 
 import java.util.Scanner;
 
-public class InputStudentdata {
+public class RegistrationLoginData {
 
 	public void inputStudentData() {
-		StudentRegisterData srd = new StudentRegisterData();
+		UserRegisterData srd = new UserRegisterData();
 		// create the scanner class object
 		Scanner sc = new Scanner(System.in);
 		// --- First name with validation ---
@@ -26,6 +26,7 @@ public class InputStudentdata {
 			break; // valid input
 		}
 		srd.setFirstName(firstName);
+		// --- Last name with validation ---
 		String lastName = null;
 		while (true) {
 			System.out.println("Enter Last Name : ");
@@ -43,6 +44,7 @@ public class InputStudentdata {
 			break; // valid input
 		}
 		srd.setLastName(lastName);
+		// --- User name with validation ---
 		String userName = null;
 		while (true) {
 			System.out.println("Enter Username : ");
@@ -54,12 +56,13 @@ public class InputStudentdata {
 				continue;
 			}
 			if (!userName.matches("^[A-Za-z][A-Za-z0-9_]{2,19}")) {
-				System.out.println("User name must contain letters,digits,dot(.) and underScore(_). Please try again.");
+				System.out.println("User name must contain letters,digits and underScore(_). Please try again.");
 				continue;
 			}
 			break; // valid input
 		}
 		srd.setUserName(userName);
+		// --- Password with validation ---
 		String pass = null;
 		while (true) {
 			System.out.println("Enter Password : ");
@@ -70,14 +73,15 @@ public class InputStudentdata {
 				System.out.println("Password cannot be empty. Please tyr again");
 				continue;
 			}
-			if (!pass.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,20}$")) {
-				System.out.println("Password must be contain One Upper and lower case ,digit and special symbol");
+			if (!pass.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$")) {
+				System.out.println("Password must contain One Upper and lower case ,digit and at least one special symbol)");
 				continue;
 			}
 			break;
 
 		}
 		srd.setPassword(pass);
+		// ---City with validation ---
 		String city = null;
 		while (true) {
 			System.out.println("Enter City : ");
@@ -95,6 +99,7 @@ public class InputStudentdata {
 			break; // valid input
 		}
 		srd.setCity(city);
+		// --- email with validation ---
 		String email = null;
 		while (true) {
 			System.out.println("Enter Email ID : ");
@@ -105,13 +110,14 @@ public class InputStudentdata {
 				System.out.println("email cannot be empty. Please try again.");
 				continue;
 			}
-			if (!email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) {
+			if (!email.matches( "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) {
 				System.out.println("Email Id contain abc123@gmail.com. Please try again");
 				continue;
 			}
 			break; // valid input
 		}
 		srd.setEmailId(email);
+		// --- Mobile Number with validation ---
 		String mobile = null;
 		while (true) {
 			System.out.println("Enter Mobile Number : ");
@@ -122,18 +128,21 @@ public class InputStudentdata {
 				System.out.println("Mobile number can't be empty. Please try again.");
 				continue;
 			}
-			if (!mobile.matches("^[7-9][0-9]{9}$")) {
-				System.out.println("Mobile number must be contain 10 digit start with 91");
+			if (!mobile.matches("^[6-9]\\d{9}$")) {
+				System.out.println("Mobile number must be contain 10 digit & first digit must be 6–9");
 				continue;
 			}
 			break;
 		}
 		srd.setMobileNumber(mobile);
+		//--- creating object of RegistrationPage -----
 		RegistrationPage rp = new RegistrationPage();
-		System.out.println("I am from input");
+		//System.out.println("I am from input");
+		//!--- calling the method saveStudent and pass the (object)srd to save the user data into db ---!
 		rp.saveStudent(srd);
 		sc.close();
 
 	}
+	
 
 }

@@ -3,7 +3,6 @@ package com.register;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Scanner;
 
@@ -11,10 +10,11 @@ public class RegistrationPage {
 
 	// User Story 1.1: Student Registration
 	private static final String DB_Driver = "com.mysql.cj.jdbc.Driver";
-	private static final String DB_URL = "jdbc:mysql://localhost:3306/quizemastertables";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/quizemastertables?connectTimeout=5000&socketTimeout=5000";
 	private static final String DB_Username = "root";
 	private static final String DB_Password = "root";
-
+    
+	//-- This Method returning the connection's object --
 	public Connection getConnection() {
 		Connection con = null;
 		try {
@@ -28,8 +28,10 @@ public class RegistrationPage {
 		return con;
 
 	}
+	
+	//--- This method save the user data into database ---
 
-	public void saveStudent(StudentRegisterData srd) {
+	public void saveStudent(UserRegisterData srd) {
 		Connection con = getConnection();
 		Scanner sc = new Scanner(System.in);
 		while (true) {
@@ -37,7 +39,7 @@ public class RegistrationPage {
 				// create prepared statement
 				PreparedStatement ps = con.prepareStatement(
 						"insert into student(first_name,last_name,username,password,city,email,mobile)values(?,?,?,?,?,?,?)");
-				System.out.println("hii");
+				//System.out.println("hii");
 				ps.setString(1, srd.getFirstName());
 				ps.setString(2, srd.getLastName());
 				ps.setString(3, srd.getUserName());
@@ -48,12 +50,13 @@ public class RegistrationPage {
 				int n = ps.executeUpdate();
 				System.out.println(n + "row inserted seccussfully...");
 				break;
+				// !-- This exception means you tried to insert a duplicate value. --!
 			} catch (SQLIntegrityConstraintViolationException dupEx) {
 				String msg = dupEx.getMessage();
-
+                // --- Checking for duplications ---
 				if (msg.contains("student.username")) {
 					System.out.print("This username is already registered. Please enter a different username: ");
-					srd.setUserName(sc.nextLine().trim());
+					srd.setUserName(sc.nextLine().trim());   // --trim used to remove white spaces
 				} else if (msg.contains("student.email")) {
 					System.out.print("This email is already registered. Please enter a different email: ");
 					srd.setEmailId(sc.nextLine().trim());
@@ -71,10 +74,12 @@ public class RegistrationPage {
 				// loop repeats to try insert again with updated data
 			} catch (Exception se) {
 				se.printStackTrace();
+			}finally {
+				sc.close();
 			}
 
 		}
-		sc.close();
+		
 	}
 
 }

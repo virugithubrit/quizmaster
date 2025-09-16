@@ -1,10 +1,11 @@
 package com.register;
-
 public class MainMethod {
-
+	
+    // !-- This is the entry point of code(Main method) --!
+	
 	public static void main(String[] args) {
-		InputStudentdata isd = new InputStudentdata();
-		isd.inputStudentData();
+		CheckValidation cv = new CheckValidation();
+		// --calling this for checking for validations
+		cv.checkingValidation();
 	}
-
 }
