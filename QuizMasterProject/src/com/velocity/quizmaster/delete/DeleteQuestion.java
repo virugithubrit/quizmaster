@@ -63,7 +63,7 @@ public class DeleteQuestion {
 				else
 					System.out.println("Failed to delete question.");
 			} else {
-				System.out.println("Deletion cancelled.");
+				System.out.println("Deletion cancelled.");// if user don't want to delete question
 			}
 
 		} catch (SQLException e) {
