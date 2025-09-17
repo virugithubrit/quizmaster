@@ -15,7 +15,7 @@ public class RegistrationPage {
 	private static final String DB_Password = "root";
     
 	//-- This Method returning the connection's object --
-	public Connection getConnection() {
+	public static Connection getConnection() {
 		Connection con = null;
 		try {
 			// load the Driver
@@ -74,8 +74,6 @@ public class RegistrationPage {
 				// loop repeats to try insert again with updated data
 			} catch (Exception se) {
 				se.printStackTrace();
-			}finally {
-				sc.close();
 			}
 
 		}

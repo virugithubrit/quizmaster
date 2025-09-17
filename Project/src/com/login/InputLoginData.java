@@ -5,7 +5,7 @@ import com.register.UserRegisterData;
 
 public class InputLoginData {
 
-	public void getLogin() {
+	public static void getLogin() {
 		UserRegisterData srd = new UserRegisterData();
 		// create the object of scanner class
 		Scanner sc = new Scanner(System.in);
@@ -48,12 +48,12 @@ public class InputLoginData {
 		srd.setPassword(pass);
 		LoginPage lp = new LoginPage();
 		if (lp.getUserData(srd)) {
-			System.out.println("Login successful!");
+			System.out.println("Login successfully!");
 		} else {
 			System.out.println("Invalid username or password!");
 			
 		}
-		sc.close();
+		
 	}
 	
 

@@ -16,8 +16,7 @@ public class CheckValidation {
 			String name = sc.next();
 			if (lp.checkingvalidation(name)) {
 				System.out.println("Your already register..!");
-				InputLoginData sld = new InputLoginData();
-				sld.getLogin();
+				InputLoginData.getLogin();
 				return;
 			}
 			while (true) {
@@ -46,9 +45,7 @@ public class CheckValidation {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			sc.close();
-		}
+		} 
 
 	}
 }

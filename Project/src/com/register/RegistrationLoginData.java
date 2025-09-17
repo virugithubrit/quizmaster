@@ -140,7 +140,7 @@ public class RegistrationLoginData {
 		//System.out.println("I am from input");
 		//!--- calling the method saveStudent and pass the (object)srd to save the user data into db ---!
 		rp.saveStudent(srd);
-		sc.close();
+		
 
 	}
 	
