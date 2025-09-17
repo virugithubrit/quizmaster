@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class StudentScoreById {//Search Student Score by ID (User Story 3.3)
+public class StudentScoreById {// Search Student Score by ID (User Story 3.3)
 
 	private static final String DB_Driver = "com.mysql.cj.jdbc.Driver";
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/quizmaster";
@@ -51,13 +51,5 @@ public class StudentScoreById {//Search Student Score by ID (User Story 3.3)
 			e.printStackTrace();
 		}
 	}
-
-//	public static void main(String[] args) {
-//		Scanner sc = new Scanner(System.in);
-//		System.out.println("Fetch Score by Student ID");
-//		System.out.print("Enter Student ID: ");
-//		int studentId = sc.nextInt();
-//		getScore(studentId);
-//	}
 
 }
