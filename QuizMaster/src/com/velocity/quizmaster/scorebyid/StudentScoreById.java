@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Scanner;
 
 public class StudentScoreById {// Search Student Score by ID (User Story 3.3)
 
@@ -12,6 +13,7 @@ public class StudentScoreById {// Search Student Score by ID (User Story 3.3)
 	private static final String DB_USER = "root";
 	private static final String DB_PASSWORD = "root";
 
+	Scanner sc=new Scanner(System.in);
 	public Connection getConnection() {
 		Connection con = null;
 		try {
@@ -26,14 +28,15 @@ public class StudentScoreById {// Search Student Score by ID (User Story 3.3)
 
 	}
 
-	public void getScore(int studentId) {
+	public void getScoreById() {
 		String query = "SELECT total_score, grade FROM score WHERE student_id = ?";
 
 		try {
 
 			Connection conn = getConnection();
 			PreparedStatement ps = conn.prepareStatement(query);
-
+			System.out.println("Enter Student Id to fetch their record");
+			int studentId=sc.nextInt();
 			ps.setInt(1, studentId);
 			ResultSet rs = ps.executeQuery();
 

@@ -2,7 +2,7 @@ package com.velocity.quizmaster.addquestions;
 
 import java.util.Scanner;
 
-public class TakeInput {//Add New Questions (User Story 3.1)
+public class TakeInput {// Add New Questions (User Story 3.1)
 
 	public void getInput() {
 
@@ -32,10 +32,10 @@ public class TakeInput {//Add New Questions (User Story 3.1)
 		if (dao.addQuestion(question)) {
 			System.out.println("Question added successfully!");
 		} else {
-			System.out.println("Failed to add question.");
+			System.out.println("Failed to add question.....try agarin!");
+			getInput();
 		}
 
-		sc.close();
 	}
 
 }

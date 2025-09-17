@@ -4,9 +4,7 @@ import java.util.List;
 
 public class GetScore {
 
-	public void getAllScore() {//View All Student Scores (Admin) (User Story 3.2)
-
-		
+	public void getAllScore() {// View All Student Scores (Admin) (User Story 3.2)
 
 		GetStudentInfo gs = new GetStudentInfo();
 		List<StudentScore> studentScores = gs.getAllStudentScores();
