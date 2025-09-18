@@ -37,20 +37,18 @@ public class LoginPage {
 	// -------This method for user already register------//
 	public boolean checkingvalidation(String userName) {
 
-		RegistrationPage rp = new RegistrationPage();
-
 		// Connection con1 = getConnection();
 		String query = "select * from student where username=?";
-		try (Connection con1 = rp.getConnection();
+		try (Connection con1 = RegistrationPage.getConnection();
 
 				PreparedStatement pst = con1.prepareStatement(query)) {
 			pst.setString(1, userName);
 			ResultSet rs = pst.executeQuery();
-			return rs.next(); // true if username match
+			return rs.next(); // true if user name match
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false; // false if username match
+			return false; // false if user name match
 		}
 
 	}

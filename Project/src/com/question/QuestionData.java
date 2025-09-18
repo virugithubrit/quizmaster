@@ -1,4 +1,4 @@
-package com.quize.qustions;
+package com.question;
 
 import com.register.*;
 import com.score.GradeClaculate;

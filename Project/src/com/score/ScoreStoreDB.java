@@ -4,15 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.mysql.cj.xdevapi.Statement;
-import com.quize.qustions.QuestionData;
 import com.register.RegistrationPage;
-import com.register.UserRegisterData;
 
 public class ScoreStoreDB {
 
-	public static void setScoreDB(int score, String grade,String message) throws SQLException {
+	// -- this method store the score into database--
+	public static void setScoreDB(int score, String grade, String message) throws SQLException {
 
 		Connection con = RegistrationPage.getConnection();
 		try {
@@ -29,25 +26,28 @@ public class ScoreStoreDB {
 
 	}
 
+	// --this method fetch the score and grade from the database--
 	public static void getScoreData() {
-		int n=1;
+		int n = 1;
 		Connection con = RegistrationPage.getConnection();
 		try {
 			PreparedStatement ps = con.prepareStatement("select total_score,grade,message from score where id=?");
 			ps.setLong(1, n);
+			n++;
 			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) { 
+				if (rs.next()) {
 					int totalScore = rs.getInt("total_score");
 					String grade = rs.getString("grade");
 					String message = rs.getString("message");
-                    
-					System.out.println("Total Score: " + totalScore);
-					System.out.println("Grade: " + grade);
-					System.out.println("message: " + message);
+
+					// Print in the requested format
+					System.out.println("Your Score: " + totalScore + " / 10");
+					System.out.println("Your Grade: " + grade);
+					System.out.println("Feedback: " + message);
 				} else {
 					System.out.println("No record found for id=n");
 				}
-			}n++;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

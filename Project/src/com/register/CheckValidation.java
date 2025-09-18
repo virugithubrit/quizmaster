@@ -6,6 +6,7 @@ import com.login.LoginPage;
 
 public class CheckValidation {
 
+	// --This method used to check validation if user present or not --//
 	public static void checkingValidation() {
 		Scanner sc = new Scanner(System.in);
 		try {
@@ -16,7 +17,7 @@ public class CheckValidation {
 			String name = sc.next();
 			if (lp.checkingvalidation(name)) {
 				System.out.println("Your already register..!");
-				InputLoginData.getLogin();
+				InputLoginData.getLogin(); // getlogin() method..if user already login then used
 				return;
 			}
 			while (true) {
@@ -25,6 +26,7 @@ public class CheckValidation {
 				String choice = sc.next();
 				if (choice.equals("yes")) {
 					try {
+						// inputStudentData() method..if user not login login then used
 						RegistrationLoginData isd = new RegistrationLoginData();
 						isd.inputStudentData();
 
@@ -32,21 +34,19 @@ public class CheckValidation {
 						e.printStackTrace();
 					}
 					break;
-				}
-				else if (choice.equals("no")) {
+				} else if (choice.equals("no")) {
 					System.out.println("Sorry you cannot perform quiz...!");
 					System.exit(0);
-					
-				}
-				else {
+
+				} else {
 					System.out.println("Invalid choice...!");
-                    
+
 				}
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}
 
 	}
 }

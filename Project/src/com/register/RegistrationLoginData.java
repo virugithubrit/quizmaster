@@ -3,7 +3,7 @@ package com.register;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import com.quize.qustions.QuizeQuestions;
+import com.question.QuizeQuestions;
 
 public class RegistrationLoginData {
 
@@ -77,7 +77,8 @@ public class RegistrationLoginData {
 				continue;
 			}
 			if (!pass.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$")) {
-				System.out.println("Password must contain One Upper and lower case ,digit and at least one special symbol)");
+				System.out.println(
+						"Password must contain One Upper and lower case ,digit and at least one special symbol)");
 				continue;
 			}
 			break;
@@ -113,7 +114,7 @@ public class RegistrationLoginData {
 				System.out.println("email cannot be empty. Please try again.");
 				continue;
 			}
-			if (!email.matches( "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) {
+			if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) {
 				System.out.println("Email Id contain abc123@gmail.com. Please try again");
 				continue;
 			}
@@ -138,15 +139,14 @@ public class RegistrationLoginData {
 			break;
 		}
 		srd.setMobileNumber(mobile);
-		//--- creating object of RegistrationPage -----
+		// --- creating object of RegistrationPage -----
 		RegistrationPage rp = new RegistrationPage();
-		//System.out.println("I am from input");
-		//!--- calling the method saveStudent and pass the (object)srd to save the user data into db ---!
+		// System.out.println("I am from input");
+		// !--- calling the method saveStudent and pass the (object)srd to save the user
+		// data into db ---!
 		rp.saveStudent(srd);
 		QuizeQuestions.getQuizeQuestions();
-		
 
 	}
-	
 
 }

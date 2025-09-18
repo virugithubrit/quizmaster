@@ -1,9 +1,8 @@
 package com.register;
 
-public class UserRegisterData  {
+public class UserRegisterData {
 
 	// In this student register data are present
-	private int id;
 	private String firstName;
 	private String lastName;
 	private String userName;
@@ -14,18 +13,9 @@ public class UserRegisterData  {
 
 	// Provide public setter and getter methods for private field used Encapsulation
 	// concept
-	
+
 	public String getFirstName() {
 		return firstName;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		id++;
-		this.id = id;
 	}
 
 	public void setFirstName(String firstName) {
@@ -79,7 +69,5 @@ public class UserRegisterData  {
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
-
-
 
 }

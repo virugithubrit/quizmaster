@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.login.LoginPage;
-import com.quize.qustions.QuizeQuestions;
+import com.question.QuizeQuestions;
 import com.register.RegistrationLoginData;
 
 public class ScoreCalculate {
@@ -15,7 +15,7 @@ public class ScoreCalculate {
 		String boldText = "\033[1m!=== View Quiz Result ===!\033[0m";
 		System.out.println(boldText);
 		String userName = null;
-		//int userAttempt=0;
+		// int userAttempt=0;
 		while (true) {
 			System.out.println("Enter Username : ");
 			userName = sc.nextLine().trim();
@@ -24,21 +24,20 @@ public class ScoreCalculate {
 			if (userName.isEmpty()) {
 				System.out.println("User name cannot be empty. Please try again.");
 				continue;
-			}
-			else if (!userName.matches("^[A-Za-z][A-Za-z0-9_]{2,19}")) {
+			} else if (!userName.matches("^[A-Za-z][A-Za-z0-9_]{2,19}")) {
 				System.out.println("User name must contain letters,digits and underScore(_). Please try again.");
 				continue;
-			}else {
+			} else {
 				break; // valid input
 			}
-			
+
 			/*
 			 * userAttempt++; if(userAttempt>=3) { userAttempt++;
 			 * System.out.println("Too many invalid attempts. Exiting..."); return; }
 			 */
-			
+
 		}
-		
+
 		// --- Password with validation ---
 		String pass = null;
 		while (true) {
@@ -84,10 +83,6 @@ public class ScoreCalculate {
 			}
 		}
 
-	} /*
-		 * catch (Exception e) { e.printStackTrace(); }
-		 */
-
-	
+	}
 
 }

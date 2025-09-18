@@ -2,11 +2,11 @@ package com.score;
 
 import java.sql.SQLException;
 
-import com.quize.qustions.QuestionData;
+import com.question.QuestionData;
 
 public class GradeClaculate {
-
-	public  String getGrade(int score) throws SQLException {
+	// --This method used to calculate the grade--
+	public String getGrade(int score) throws SQLException {
 
 		if (score >= 8) {
 			return "A";
@@ -16,19 +16,18 @@ public class GradeClaculate {
 			return "C";
 		}
 	}
-   
-	/*
-	 * public String getMessage(int score) { String if (score >= 8) { grade = "A";
-	 * message = "Excellent"; } else if (score >= 5) { grade = "B"; message =
-	 * "Good"; } else { grade = "C"; message = "Needs Improvement"; }
-	 * 
-	 * }
-	 */
-   
 
+	// --this method provide the feedback--
+	public String getMessage(int score) {
 
-	
-	
-	
+		if (score >= 8) {
+			return "Excellent";
+		} else if (score >= 5) {
+			return "Good";
+		} else {
+			return "Needs Improvement";
+		}
+
+	}
 
 }

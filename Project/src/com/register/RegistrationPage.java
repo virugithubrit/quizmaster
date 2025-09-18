@@ -13,8 +13,8 @@ public class RegistrationPage {
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/quizemastertables?connectTimeout=5000&socketTimeout=5000";
 	private static final String DB_Username = "root";
 	private static final String DB_Password = "root";
-    
-	//-- This Method returning the connection's object --
+
+	// -- This Method returning the connection's object --
 	public static Connection getConnection() {
 		Connection con = null;
 		try {
@@ -28,38 +28,36 @@ public class RegistrationPage {
 		return con;
 
 	}
-	
-	//--- This method save the user data into database ---
+
+	// --- This method save the user data into database ---
 
 	public void saveStudent(UserRegisterData srd) {
 		Connection con = getConnection();
 		Scanner sc = new Scanner(System.in);
-		srd.setId(0);
 		while (true) {
 			try {
 				// create prepared statement
 				PreparedStatement ps = con.prepareStatement(
-						"insert into student(id,first_name,last_name,username,password,city,email,mobile)values(?,?,?,?,?,?,?,?)");
-				//System.out.println("hii");
+						"insert into student(first_name,last_name,username,password,city,email,mobile)values(?,?,?,?,?,?,?)");
+				// System.out.println("hii");
 				ps.setString(1, srd.getFirstName());
-				ps.setString(2, srd.getFirstName());
-				ps.setString(3, srd.getLastName());
-				ps.setString(4, srd.getUserName());
-				ps.setString(5, srd.getPassword());
-				ps.setString(6, srd.getCity());
-				ps.setString(7, srd.getEmailId());
-				ps.setString(8, srd.getMobileNumber());
+				ps.setString(2, srd.getLastName());
+				ps.setString(3, srd.getUserName());
+				ps.setString(4, srd.getPassword());
+				ps.setString(5, srd.getCity());
+				ps.setString(6, srd.getEmailId());
+				ps.setString(7, srd.getMobileNumber());
 				int n = ps.executeUpdate();
-				
+
 				System.out.println(n + "row inserted seccussfully...");
 				break;
 				// !-- This exception means you tried to insert a duplicate value. --!
 			} catch (SQLIntegrityConstraintViolationException dupEx) {
 				String msg = dupEx.getMessage();
-                // --- Checking for duplications ---
+				// --- Checking for duplications ---
 				if (msg.contains("student.username")) {
 					System.out.print("This username is already registered. Please enter a different username: ");
-					srd.setUserName(sc.nextLine().trim());   // --trim used to remove white spaces
+					srd.setUserName(sc.nextLine().trim()); // --trim used to remove white spaces
 				} else if (msg.contains("student.email")) {
 					System.out.print("This email is already registered. Please enter a different email: ");
 					srd.setEmailId(sc.nextLine().trim());
@@ -80,7 +78,7 @@ public class RegistrationPage {
 			}
 
 		}
-		
+
 	}
 
 }
