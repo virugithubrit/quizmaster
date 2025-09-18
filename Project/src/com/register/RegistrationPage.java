@@ -10,9 +10,9 @@ public class RegistrationPage {
 
 	// User Story 1.1: Student Registration
 	private static final String DB_Driver = "com.mysql.cj.jdbc.Driver";
-	private static final String DB_URL = "jdbc:mysql://localhost:3306/quizemaster";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/quizemastertables?connectTimeout=5000&socketTimeout=5000";
 	private static final String DB_Username = "root";
-	private static final String DB_Password = "Root";
+	private static final String DB_Password = "root";
     
 	//-- This Method returning the connection's object --
 	public static Connection getConnection() {
