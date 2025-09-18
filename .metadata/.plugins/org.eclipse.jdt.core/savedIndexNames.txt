@@ -9,7 +9,6 @@ INDEX VERSION 1.131+D:\QuizMaster\.metadata\.plugins\org.eclipse.jdt.core
 2476351216.index
 2777612265.index
 3464205104.index
-3749796864.index
 2831726757.index
 741416789.index
 4276758565.index
