@@ -6,56 +6,52 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class Quizsummary {
-	
-	
-	    private static final String URL = "jdbc:mysql://localhost:3306/quizmaster";
-	    private static final String USER = "root";
-	    private static final String PASSWORD = "root";
 
-	    public static void showSummary(int studentId) {
-	        try {Class.forName("com.mysql.cj.jdbc.Driver");
-	        	Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-	            
-	            String query = "SELECT total_score, grade FROM score WHERE student_id = ? ORDER BY student_id DESC LIMIT 1";
-	            PreparedStatement ps = conn.prepareStatement(query);
-	            ps.setInt(1, studentId);
-	            ResultSet rs = ps.executeQuery();
+	private static final String URL = "jdbc:mysql://localhost:3306/quizmaster";
+	private static final String USER = "root";
+	private static final String PASSWORD = "root";
 
-	            if (rs.next()) {
-	                int score = rs.getInt("total_score");
-	                String grade = rs.getString("grade");
+	public static void showSummary(int studentId) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
-	                int totalQuestions = 10; // fixed
-	                int correctAnswers;
-	                int wrongAnswers;
+			String query = "SELECT total_score, grade FROM score WHERE student_id = ? ORDER BY student_id DESC LIMIT 1";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, studentId);
+			ResultSet rs = ps.executeQuery();
 
-	                // 🔑 depends on how you calculate score
-	                // If score = correct answers
-	                correctAnswers = score;
-	                // If score = 2 points per correct, use this instead:
-	                // correctAnswers = score / 2;
+			if (rs.next()) {
+				int score = rs.getInt("total_score");
+				String grade = rs.getString("grade");
 
-	                wrongAnswers = totalQuestions - correctAnswers;
+				int totalQuestions = 10;
+				int correctAnswers;
+				int wrongAnswers;
 
-	                // 📊 Print Summary
-	                System.out.println("\n===== Quiz Summary =====");
-	                System.out.println("Total Questions: " + totalQuestions);
-	                System.out.println("Correct Answers: " + correctAnswers);
-	                System.out.println("Wrong Answers  : " + wrongAnswers);
-	                System.out.println("Score          : " + score);
-	                System.out.println("Grade          : " + grade);
-	            } else {
-	                System.out.println("❌ No quiz record found for studentId: " + studentId);
-	            }
+				correctAnswers = score;
 
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
-	    }
+				wrongAnswers = totalQuestions - correctAnswers;
 
-	    // Test
-	    public static void main(String[] args) {
-	        showSummary(1); // pass student_id from DB
-	    }
-	
+				// Print Summary
+				System.out.println("\n===== Quiz Summary =====");
+				System.out.println("Total Questions: " + totalQuestions);
+				System.out.println("Correct Answers: " + correctAnswers);
+				System.out.println("Wrong Answers  : " + wrongAnswers);
+				System.out.println("Score          : " + score);
+				System.out.println("Grade          : " + grade);
+			} else {
+				System.out.println(" No quiz record found for studentId: " + studentId);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	// Test
+	public static void main(String[] args) {
+		showSummary(1);
+	}
+
 }
