@@ -1,13 +1,10 @@
 package com.register;
 
-import java.sql.SQLException;
 import java.util.Scanner;
-
-import com.quize.qustions.QuizeQuestions;
 
 public class RegistrationLoginData {
 
-	public void inputStudentData() throws SQLException {
+	public void inputStudentData() {
 		UserRegisterData srd = new UserRegisterData();
 		// create the scanner class object
 		Scanner sc = new Scanner(System.in);
@@ -143,7 +140,6 @@ public class RegistrationLoginData {
 		//System.out.println("I am from input");
 		//!--- calling the method saveStudent and pass the (object)srd to save the user data into db ---!
 		rp.saveStudent(srd);
-		QuizeQuestions.getQuizeQuestions();
 		
 
 	}

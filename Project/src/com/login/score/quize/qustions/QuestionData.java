@@ -21,7 +21,7 @@ public class QuestionData {
 		try {
 			// create the prepared statement
 			PreparedStatement ps = con.prepareStatement(
-					"SELECT DISTINCT question_text, option1, option2, option3, option4,correct_option FROM question ORDER BY RAND() LIMIT 10");
+					"SELECT question_text, option1, option2, option3, option4,correct_option FROM question ORDER BY RAND() LIMIT 1");
 			ResultSet rs = ps.executeQuery();
 
 			// -- display question from database --

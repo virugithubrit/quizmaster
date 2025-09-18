@@ -10,8 +10,9 @@ public class MainMethod {
 	// !-- This is the entry point of code(Main method) --!
 
 	public static void main(String[] args) throws SQLException {
-		// --calling this for checking for validations--
-		CheckValidation.checkingValidation();
+		CheckValidation cv = new CheckValidation();
+		// --calling this for checking for validations
+		cv.checkingValidation();
 		QuizeQuestions.getQuizeQuestions();
 		ScoreCalculate.getScore();
 		

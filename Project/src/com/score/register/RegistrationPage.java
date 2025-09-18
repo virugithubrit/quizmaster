@@ -34,21 +34,19 @@ public class RegistrationPage {
 	public void saveStudent(UserRegisterData srd) {
 		Connection con = getConnection();
 		Scanner sc = new Scanner(System.in);
-		srd.setId(0);
 		while (true) {
 			try {
 				// create prepared statement
 				PreparedStatement ps = con.prepareStatement(
-						"insert into student(id,first_name,last_name,username,password,city,email,mobile)values(?,?,?,?,?,?,?,?)");
+						"insert into student(first_name,last_name,username,password,city,email,mobile)values(?,?,?,?,?,?,?)");
 				//System.out.println("hii");
 				ps.setString(1, srd.getFirstName());
-				ps.setString(2, srd.getFirstName());
-				ps.setString(3, srd.getLastName());
-				ps.setString(4, srd.getUserName());
-				ps.setString(5, srd.getPassword());
-				ps.setString(6, srd.getCity());
-				ps.setString(7, srd.getEmailId());
-				ps.setString(8, srd.getMobileNumber());
+				ps.setString(2, srd.getLastName());
+				ps.setString(3, srd.getUserName());
+				ps.setString(4, srd.getPassword());
+				ps.setString(5, srd.getCity());
+				ps.setString(6, srd.getEmailId());
+				ps.setString(7, srd.getMobileNumber());
 				int n = ps.executeUpdate();
 				
 				System.out.println(n + "row inserted seccussfully...");

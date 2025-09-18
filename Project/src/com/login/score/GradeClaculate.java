@@ -16,16 +16,13 @@ public class GradeClaculate {
 			return "C";
 		}
 	}
-   
-	/*
-	 * public String getMessage(int score) { String if (score >= 8) { grade = "A";
-	 * message = "Excellent"; } else if (score >= 5) { grade = "B"; message =
-	 * "Good"; } else { grade = "C"; message = "Needs Improvement"; }
-	 * 
-	 * }
-	 */
-   
 
+	public String getGrade1(int score) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 	
 	

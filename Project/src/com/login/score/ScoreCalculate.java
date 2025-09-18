@@ -88,6 +88,4 @@ public class ScoreCalculate {
 		 * catch (Exception e) { e.printStackTrace(); }
 		 */
 
-	
-
 }

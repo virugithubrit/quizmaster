@@ -6,7 +6,7 @@ import com.login.LoginPage;
 
 public class CheckValidation {
 
-	public static void checkingValidation() {
+	void checkingValidation() {
 		Scanner sc = new Scanner(System.in);
 		try {
 			LoginPage lp = new LoginPage();
