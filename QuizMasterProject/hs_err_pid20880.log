@@ -1,0 +1,165 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes for AllocateHeap
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (memory/allocation.inline.hpp:61), pid=20880, tid=0x00000000000031d0
+#
+# JRE version:  (8.0_241-b07) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.241-b07 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000002fd3800):  JavaThread "Unknown thread" [_thread_in_vm, id=12752, stack(0x0000000002d90000,0x0000000002e90000)]
+
+Stack: [0x0000000002d90000,0x0000000002e90000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x0000000002fd3800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=12752, stack(0x0000000002d90000,0x0000000002e90000)]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+heap address: 0x0000000082400000, size: 2012 MB, Compressed Oops mode: 32-bit
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3
+Compressed class space size: 1073741824 Address: 0x0000000100000000
+
+Heap:
+ PSYoungGen      total 37888K, used 655K [0x00000000d6180000, 0x00000000d8b80000, 0x0000000100000000)
+  eden space 32768K, 2% used [0x00000000d6180000,0x00000000d6223d80,0x00000000d8180000)
+  from space 5120K, 0% used [0x00000000d8680000,0x00000000d8680000,0x00000000d8b80000)
+  to   space 5120K, 0% used [0x00000000d8180000,0x00000000d8180000,0x00000000d8680000)
+ ParOldGen       total 86016K, used 0K [0x0000000082400000, 0x0000000087800000, 0x00000000d6180000)
+  object space 86016K, 0% used [0x0000000082400000,0x0000000082400000,0x0000000087800000)
+ Metaspace       used 763K, capacity 4480K, committed 4480K, reserved 1056768K
+  class space    used 76K, capacity 384K, committed 384K, reserved 1048576K
+
+Card table byte_map: [0x0000000012490000,0x0000000012880000] byte_map_base: 0x000000001207e000
+
+Marking Bits: (ParMarkBitMap*) 0x000000005ce6be30
+ Begin Bits: [0x0000000013320000, 0x0000000015290000)
+ End Bits:   [0x0000000015290000, 0x0000000017200000)
+
+Polling page: 0x0000000001400000
+
+CodeCache: size=245760Kb used=328Kb max_used=328Kb free=245431Kb
+ bounds [0x00000000030d0000, 0x0000000003340000, 0x00000000120d0000]
+ total_blobs=58 nmethods=0 adapters=38
+ compilation: enabled
+
+Compilation events (0 events):
+No events
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 5.244 loading class java/lang/Short
+Event: 5.244 loading class java/lang/Short done
+Event: 5.244 loading class java/lang/Integer
+Event: 5.244 loading class java/lang/Integer done
+Event: 5.244 loading class java/lang/Long
+Event: 5.244 loading class java/lang/Long done
+Event: 5.245 loading class java/lang/NullPointerException
+Event: 5.246 loading class java/lang/NullPointerException done
+Event: 5.246 loading class java/lang/ArithmeticException
+Event: 5.246 loading class java/lang/ArithmeticException done
+
+
+Dynamic libraries:
+0x00007ff6c0050000 - 0x00007ff6c0087000 	C:\Program Files\Java\jre1.8.0_241\bin\javaw.exe
+0x00007ffcf7a20000 - 0x00007ffcf7c89000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffcf65e0000 - 0x00007ffcf66a9000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffcf4f30000 - 0x00007ffcf5323000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffcf7920000 - 0x00007ffcf79d4000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffcf66b0000 - 0x00007ffcf6759000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffcf69b0000 - 0x00007ffcf6a56000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffcf59d0000 - 0x00007ffcf5ae8000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffcf6400000 - 0x00007ffcf65c4000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffcf4dd0000 - 0x00007ffcf4df7000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffcf7190000 - 0x00007ffcf71bb000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffcf4e00000 - 0x00007ffcf4f2d000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffcf4bb0000 - 0x00007ffcf4c53000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffcf5330000 - 0x00007ffcf547b000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffce3990000 - 0x00007ffce3c23000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.5074_none_3e0d6f78e32fd63f\COMCTL32.dll
+0x00007ffcf6220000 - 0x00007ffcf624f000 	C:\WINDOWS\System32\IMM32.DLL
+0x000000005c560000 - 0x000000005c632000 	C:\Program Files\Java\jre1.8.0_241\bin\msvcr100.dll
+0x000000005c640000 - 0x000000005ceec000 	C:\Program Files\Java\jre1.8.0_241\bin\server\jvm.dll
+0x00007ffcf5cf0000 - 0x00007ffcf5cf8000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007ffcc9960000 - 0x00007ffcc996a000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffcf6ec0000 - 0x00007ffcf6f34000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffce5220000 - 0x00007ffce5255000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffcecf50000 - 0x00007ffcecf5b000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffcefd40000 - 0x00007ffcefd4f000 	C:\Program Files\Java\jre1.8.0_241\bin\verify.dll
+0x00007ffcd8210000 - 0x00007ffcd8239000 	C:\Program Files\Java\jre1.8.0_241\bin\java.dll
+0x00007ffcc4580000 - 0x00007ffcc45b5000 	C:\Program Files\Java\jre1.8.0_241\bin\jdwp.dll
+0x00007ffcefdd0000 - 0x00007ffcefdd8000 	C:\Program Files\Java\jre1.8.0_241\bin\npt.dll
+0x00007ffcc4390000 - 0x00007ffcc43b3000 	C:\Program Files\Java\jre1.8.0_241\bin\instrument.dll
+0x00007ffcdf070000 - 0x00007ffcdf086000 	C:\Program Files\Java\jre1.8.0_241\bin\zip.dll
+
+VM Arguments:
+jvm_args: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:58222 -javaagent:D:\eclipse-jee-photon-R-win32-x86_64\eclipse\configuration\org.eclipse.osgi\418\0\.cp\lib\javaagent-shaded.jar -Dfile.encoding=Cp1252 
+java_command: com.velocity.quizmaster.editquestion.EditQuestion
+java_class_path (initial): C:\Program Files\Java\jre1.8.0_241\lib\resources.jar;C:\Program Files\Java\jre1.8.0_241\lib\rt.jar;C:\Program Files\Java\jre1.8.0_241\lib\jsse.jar;C:\Program Files\Java\jre1.8.0_241\lib\jce.jar;C:\Program Files\Java\jre1.8.0_241\lib\charsets.jar;C:\Program Files\Java\jre1.8.0_241\lib\jfr.jar;C:\Program Files\Java\jre1.8.0_241\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jre1.8.0_241\lib\ext\cldrdata.jar;C:\Program Files\Java\jre1.8.0_241\lib\ext\dnsns.jar;C:\Program Files\Java\jre1.8.0_241\lib\ext\jaccess.jar;C:\Program Files\Java\jre1.8.0_241\lib\ext\jfxrt.jar;C:\Program Files\Java\jre1.8.0_241\lib\ext\localedata.jar;C:\Program Files\Java\jre1.8.0_241\lib\ext\nashorn.jar;C:\Program Files\Java\jre1.8.0_241\lib\ext\sunec.jar;C:\Program Files\Java\jre1.8.0_241\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jre1.8.0_241\lib\ext\sunmscapi.jar;C:\Program Files\Java\jre1.8.0_241\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jre1.8.0_241\lib\ext\zipfs.jar;D:\QuizMaster\QuizMasterProject\bin;C:\Users\viraj\Downloads\mysql-connector-j-9.3.0.jar;D:\eclipse-jee-photon-R-win32-x86_64\eclipse\configuration\org.eclipse.osgi\418\0\.cp\lib\javaagent-shaded.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk-21
+JRE_HOME="C:\Users\viraj\Downloads\jdk-8u241-windows-x64.exe"
+PATH=C:/Program Files/Java/jre1.8.0_241/bin/server;C:/Program Files/Java/jre1.8.0_241/bin;C:/Program Files/Java/jre1.8.0_241/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Common Files\Oracle\Java\javapath;E:\python37\Scripts\;E:\python37\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\MinGW\bin;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\Java\jdk-21\bin;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Cloud Foundry;C:\Program Files\apache-maven-3.9.11-bin\apache-maven-3.9.11\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\viraj\AppData\Local\Microsoft\WindowsApps;C:\Users\viraj\AppData\Local\GitHubDesktop\bin;C:\Users\viraj\AppData\Roaming\npm;D:\Microsoft VS Code\bin;;D:\eclipse-jee-photon-R-win32-x86_64\eclipse;
+USERNAME=viraj
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 142 Stepping 11, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10.0 , 64 bit Build 26100 (10.0.26100.5074)
+
+CPU:total 8 (initial active 8) (4 cores per cpu, 2 threads per core) family 6 model 142 stepping 11, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx
+
+Memory: 4k page, physical 8236232k(3321876k free), swap 33402056k(372696k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.241-b07) for windows-amd64 JRE (1.8.0_241-b07), built on Dec 11 2019 10:21:40 by "rejava" with MS VC++ 10.0 (VS2010)
+
+time: Wed Sep 17 18:46:22 2025
+timezone: India Standard Time
+elapsed time: 6 seconds (0d 0h 0m 6s)
+
