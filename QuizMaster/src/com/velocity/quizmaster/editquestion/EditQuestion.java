@@ -12,9 +12,9 @@ public class EditQuestion {
 	private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/quizmaster";
 	private static final String DB_USERNAME = "root";
-	private static final String DB_PASSWORD = "Root";
+	private static final String DB_PASSWORD = "root";
 
-	public static Connection getConnection() throws SQLException {
+	public Connection getConnection() throws SQLException {
 		Connection conn = null;
 
 		try {
@@ -28,7 +28,7 @@ public class EditQuestion {
 		return conn;
 	}
 
-	public static void editExistingQuestion() {
+	public void editExistingQuestion() {
 		Scanner scanner = new Scanner(System.in);
 		try {
 			Connection conn = getConnection();
@@ -99,14 +99,7 @@ public class EditQuestion {
 			e.printStackTrace();
 		} catch (InputMismatchException e) {
 			System.out.println("Error: Please enter only Id.");
-		} finally {
-			scanner.close();
 		}
-
-	}
-
-	public static void main(String[] args) {
-		editExistingQuestion();
 	}
 
 }
