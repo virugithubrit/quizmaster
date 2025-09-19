@@ -1,7 +1,7 @@
 package com.question;
 
 import com.register.*;
-import com.score.GradeClaculate;
+import com.score.GradeCalculate;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -60,8 +60,8 @@ public class QuestionData {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return count;
+
 	}
 
 }

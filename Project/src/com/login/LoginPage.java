@@ -45,12 +45,28 @@ public class LoginPage {
 			pst.setString(1, userName);
 			ResultSet rs = pst.executeQuery();
 			return rs.next(); // true if user name match
-
+            
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false; // false if user name match
 		}
 
+	}
+	public static int getStudentId(String userName) {
+	    String query = "SELECT id FROM student WHERE username = ?";
+	    try (Connection con = RegistrationPage.getConnection();
+	         PreparedStatement pst = con.prepareStatement(query)) {
+
+	        pst.setString(1, userName);
+	        try (ResultSet rs = pst.executeQuery()) {
+	            if (rs.next()) {
+	                return rs.getInt("id");   // return the student's id
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return 0;  // 0 means not found or error
 	}
 	
 	

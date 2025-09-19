@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import com.question.QuestionData;
 
-public class GradeClaculate {
+public class GradeCalculate {
 	// --This method used to calculate the grade--
 	public String getGrade(int score) throws SQLException {
 

@@ -3,8 +3,12 @@ package com.register;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Scanner;
+
+import com.mysql.cj.xdevapi.Statement;
+import com.score.ScoreStoreDB;
 
 public class RegistrationPage {
 
@@ -31,14 +35,15 @@ public class RegistrationPage {
 
 	// --- This method save the user data into database ---
 
-	public void saveStudent(UserRegisterData srd) {
+	public int saveStudent(UserRegisterData srd) {
+		int newId=0;
 		Connection con = getConnection();
 		Scanner sc = new Scanner(System.in);
 		while (true) {
 			try {
 				// create prepared statement
 				PreparedStatement ps = con.prepareStatement(
-						"insert into student(first_name,last_name,username,password,city,email,mobile)values(?,?,?,?,?,?,?)");
+						"insert into student(first_name,last_name,username,password,city,email,mobile)values(?,?,?,?,?,?,?)", java.sql.Statement.RETURN_GENERATED_KEYS);
 				// System.out.println("hii");
 				ps.setString(1, srd.getFirstName());
 				ps.setString(2, srd.getLastName());
@@ -48,7 +53,11 @@ public class RegistrationPage {
 				ps.setString(6, srd.getEmailId());
 				ps.setString(7, srd.getMobileNumber());
 				int n = ps.executeUpdate();
-
+				ResultSet rs = ps.getGeneratedKeys();
+				if (rs.next()) {
+				    newId = rs.getInt(1);
+				    System.out.println(newId);
+				}
 				System.out.println(n + "row inserted seccussfully...");
 				break;
 				// !-- This exception means you tried to insert a duplicate value. --!
@@ -72,13 +81,23 @@ public class RegistrationPage {
 					System.out.println("Duplicate entry: " + msg);
 					break; // or decide to retry
 				}
+				
 				// loop repeats to try insert again with updated data
 			} catch (Exception se) {
 				se.printStackTrace();
 			}
+			//int id=ScoreStoreDB.fetchId(srd.getUserName());
+			//System.out.println("savedb"+id);
+			 
 
 		}
+		return newId;
+	   
 
 	}
+	
+	
+		
+	}
 
-}
+

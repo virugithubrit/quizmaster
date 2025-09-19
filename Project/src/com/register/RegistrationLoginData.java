@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.question.QuizeQuestions;
+import com.score.ScoreStoreDB;
 
 public class RegistrationLoginData {
 
@@ -26,6 +27,7 @@ public class RegistrationLoginData {
 				System.out.println("First name must contain only letters. Please try again.");
 				continue;
 			}
+			
 			break; // valid input
 		}
 		srd.setFirstName(firstName);
@@ -62,6 +64,7 @@ public class RegistrationLoginData {
 				System.out.println("User name must contain letters,digits and underScore(_). Please try again.");
 				continue;
 			}
+			
 			break; // valid input
 		}
 		srd.setUserName(userName);
@@ -145,7 +148,7 @@ public class RegistrationLoginData {
 		// !--- calling the method saveStudent and pass the (object)srd to save the user
 		// data into db ---!
 		rp.saveStudent(srd);
-		QuizeQuestions.getQuizeQuestions();
+		//QuizeQuestions.getQuizeQuestions();
 
 	}
 

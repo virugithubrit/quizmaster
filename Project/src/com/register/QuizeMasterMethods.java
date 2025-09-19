@@ -9,9 +9,9 @@ public class QuizeMasterMethods {
 
 	public static void getQuizeMasterMethods() throws SQLException {
 		// --calling this for checking for validations--
-		CheckValidation.checkingValidation();
+		int id= CheckValidation.checkingValidation();
 		// ---if user login successfully after that using this method perform quiz
-		QuizeQuestions.getQuizeQuestions();
+		QuizeQuestions.getQuizeQuestions(id);
 		// ---after perform quiz this method display the quiz
 		ScoreCalculate.getScore();
 	}
