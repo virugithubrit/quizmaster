@@ -27,7 +27,7 @@ public class RegistrationPage {
 			// establish the connection
 			con = DriverManager.getConnection(DB_URL, DB_Username, DB_Password);
 		} catch (Exception e) {
-			e.getStackTrace();
+			e.printStackTrace();
 		}
 		return con;
 
