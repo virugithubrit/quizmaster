@@ -19,7 +19,7 @@ public class InputLoginData {
 				System.out.println("User name cannot be empty. Please try again.");
 				continue;
 			}
-			if (!userName.matches("^[A-Za-z][A-Za-z0-9_]{2,19}")) {
+			if (!userName.matches("^(?=.*[0-9_])[A-Za-z][A-Za-z0-9_]{2,19}$")) {
 				System.out.println("User name must contain letters,digits,dot(.) and underScore(_). Please try again.");
 				continue;
 			}

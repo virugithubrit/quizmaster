@@ -2,8 +2,6 @@ package com.score;
 
 import java.sql.SQLException;
 
-import com.question.QuestionData;
-
 public class GradeCalculate {
 	// --This method used to calculate the grade--
 	public String getGrade(int score) throws SQLException {

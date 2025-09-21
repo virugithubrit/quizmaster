@@ -2,41 +2,33 @@ package com.score;
 
 import java.sql.SQLException;
 import java.util.Scanner;
-
 import com.login.LoginPage;
-import com.question.QuizeQuestions;
 import com.register.RegistrationLoginData;
+import com.register.UserRegisterData;
 
 public class ScoreCalculate {
 
-	public static void getScore() throws SQLException {
+	public static void getScore(int id,Scanner sc) throws SQLException {
+		UserRegisterData urd = new UserRegisterData();
 		LoginPage lp = new LoginPage();
-		Scanner sc = new Scanner(System.in);
-		String boldText = "\033[1m!=== View Quiz Result ===!\033[0m";
-		System.out.println(boldText);
-		String userName = null;
-		// int userAttempt=0;
-		while (true) {
-			System.out.println("Enter Username : ");
-			userName = sc.nextLine().trim();
 
-			// check not empty and letters and alphabet only
+		System.out.println("\033[1m!=== View Quiz Result ===!\033[0m");
+
+		String userName=null;
+		while (true) {
+			System.out.print("Enter Username : ");
+			userName=sc.nextLine().trim();
 			if (userName.isEmpty()) {
 				System.out.println("User name cannot be empty. Please try again.");
 				continue;
-			} else if (!userName.matches("^[A-Za-z][A-Za-z0-9_]{2,19}")) {
-				System.out.println("User name must contain letters,digits and underScore(_). Please try again.");
+			} else if (!userName.matches("^[A-Za-z][A-Za-z0-9_]{2,19}$")) {
+				System.out.println("User name must contain letters, digits, and underscore(_). Please try again.");
 				continue;
-			} else {
-				break; // valid input
 			}
-
-			/*
-			 * userAttempt++; if(userAttempt>=3) { userAttempt++;
-			 * System.out.println("Too many invalid attempts. Exiting..."); return; }
-			 */
-
+			break;
 		}
+
+		urd.setUserName(userName);
 
 		// --- Password with validation ---
 		String pass = null;
@@ -57,8 +49,9 @@ public class ScoreCalculate {
 			break;
 
 		}
+		urd.setPassword(pass);
 		if (lp.checkingvalidation(userName, pass)) {
-			ScoreStoreDB.getScoreData();
+			ScoreStoreDB.getScoreData(id);
 			return;
 		}
 		while (true) {

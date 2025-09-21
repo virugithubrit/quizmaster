@@ -1,7 +1,6 @@
 package com.allscore;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,15 +11,18 @@ import com.register.RegistrationPage;
 
 public class GetStudentInfo {//View All Student Scores (Admin) (User Story 3.2)
 
-	public List<StudentScore> getAllStudentScores() {
+	public List<StudentScore> getAllStudentScores() throws SQLException  {
 		List<StudentScore> scores = new ArrayList<>();
 		String query = "SELECT s.id, s.first_name, s.last_name, sc.total_score, sc.grade " + "FROM student s "
 				+ "JOIN score sc ON s.id = sc.student_id " + "ORDER BY sc.total_score ASC";
-
+		Connection conn=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
 		try {
-			Connection conn = RegistrationPage.getConnection();
-			PreparedStatement ps = conn.prepareStatement(query);
-			ResultSet rs = ps.executeQuery();
+			 conn = RegistrationPage.getConnection();
+			 ps = conn.prepareStatement(query);
+			 rs = ps.executeQuery();
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				String firstName = rs.getString("first_name");
@@ -33,6 +35,11 @@ public class GetStudentInfo {//View All Student Scores (Admin) (User Story 3.2)
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			rs.close();
+			ps.close();
+			conn.close();
+			
 		}
 		return scores;
 	}

@@ -3,12 +3,9 @@ package com.register;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import com.question.QuizeQuestions;
-import com.score.ScoreStoreDB;
-
 public class RegistrationLoginData {
 
-	public void inputStudentData() throws SQLException {
+	public String inputStudentData() throws SQLException {
 		UserRegisterData srd = new UserRegisterData();
 		// create the scanner class object
 		Scanner sc = new Scanner(System.in);
@@ -60,7 +57,7 @@ public class RegistrationLoginData {
 				System.out.println("User name cannot be empty. Please try again.");
 				continue;
 			}
-			if (!userName.matches("^[A-Za-z][A-Za-z0-9_]{2,19}")) {
+			if (!userName.matches("^(?=.*[0-9_])[A-Za-z][A-Za-z0-9_]{2,19}$")) {
 				System.out.println("User name must contain letters,digits and underScore(_). Please try again.");
 				continue;
 			}
@@ -117,7 +114,7 @@ public class RegistrationLoginData {
 				System.out.println("email cannot be empty. Please try again.");
 				continue;
 			}
-			if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) {
+			if (!email.matches("^(?=.*\\d)[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) {
 				System.out.println("Email Id contain abc123@gmail.com. Please try again");
 				continue;
 			}
@@ -149,6 +146,7 @@ public class RegistrationLoginData {
 		// data into db ---!
 		rp.saveStudent(srd);
 		//QuizeQuestions.getQuizeQuestions();
+		return userName ;
 
 	}
 

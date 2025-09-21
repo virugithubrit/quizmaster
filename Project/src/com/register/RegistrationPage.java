@@ -7,9 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Scanner;
 
-import com.mysql.cj.xdevapi.Statement;
-import com.score.ScoreStoreDB;
-
 public class RegistrationPage {
 
 	// User Story 1.1: Student Registration
@@ -35,16 +32,14 @@ public class RegistrationPage {
 
 	// --- This method save the user data into database ---
 
-	public int saveStudent(UserRegisterData srd) {
-		int newId=0;
-		Connection con = getConnection();
+	public void saveStudent(UserRegisterData srd) {
 		Scanner sc = new Scanner(System.in);
+		Connection con = getConnection();
 		while (true) {
-			try {
+			try{
 				// create prepared statement
 				PreparedStatement ps = con.prepareStatement(
-						"insert into student(first_name,last_name,username,password,city,email,mobile)values(?,?,?,?,?,?,?)", java.sql.Statement.RETURN_GENERATED_KEYS);
-				// System.out.println("hii");
+						"insert into student(first_name,last_name,username,password,city,email,mobile)values(?,?,?,?,?,?,?)");
 				ps.setString(1, srd.getFirstName());
 				ps.setString(2, srd.getLastName());
 				ps.setString(3, srd.getUserName());
@@ -53,11 +48,6 @@ public class RegistrationPage {
 				ps.setString(6, srd.getEmailId());
 				ps.setString(7, srd.getMobileNumber());
 				int n = ps.executeUpdate();
-				ResultSet rs = ps.getGeneratedKeys();
-				if (rs.next()) {
-				    newId = rs.getInt(1);
-				    System.out.println(newId);
-				}
 				System.out.println(n + "row inserted seccussfully...");
 				break;
 				// !-- This exception means you tried to insert a duplicate value. --!
@@ -79,19 +69,15 @@ public class RegistrationPage {
 					srd.setMobileNumber(sc.nextLine().trim());
 				} else {
 					System.out.println("Duplicate entry: " + msg);
-					break; // or decide to retry
-				}
-				
+					break;   // or decide to retry
+				}	
 				// loop repeats to try insert again with updated data
 			} catch (Exception se) {
 				se.printStackTrace();
 			}
-			//int id=ScoreStoreDB.fetchId(srd.getUserName());
-			//System.out.println("savedb"+id);
-			 
-
+			
 		}
-		return newId;
+		
 	   
 
 	}

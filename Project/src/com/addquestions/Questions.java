@@ -1,8 +1,7 @@
 package com.addquestions;
 
-public class Questions {//Add New Questions (User Story 3.1)
+public class Questions {// Add New Questions (User Story 3.1)
 
-	
 	private String questionText;
 	private String option1;
 	private String option2;
@@ -21,7 +20,7 @@ public class Questions {//Add New Questions (User Story 3.1)
 		this.correctOption = correctOption;
 	}
 
-	// Getters 
+	// Getters
 	public String getQuestionText() {
 		return questionText;
 	}

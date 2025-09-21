@@ -1,8 +1,6 @@
-package com.question;
+package com.qustions;
 
 import com.register.*;
-import com.score.GradeCalculate;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,12 +14,11 @@ public class QuestionData {
 	public static int questionsData() throws SQLException {
 		Scanner sc = new Scanner(System.in);
 		Connection con = RegistrationPage.getConnection();
-
 		int count = 0;
 		try {
 			// create the prepared statement
 			PreparedStatement ps = con.prepareStatement(
-					"SELECT DISTINCT question_text, option1, option2, option3, option4,correct_option FROM question ORDER BY RAND() LIMIT 10");
+					"SELECT question_text, option1, option2, option3, option4,correct_option FROM question ORDER BY RAND() LIMIT 1");
 			ResultSet rs = ps.executeQuery();
 
 			// -- display question from database --
@@ -53,15 +50,13 @@ public class QuestionData {
 			} else {
 				System.out.println("Question not found");
 			}
-			con.close();
-			rs.close();
 			ps.close();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return count;
 
+		return count;
 	}
 
 }

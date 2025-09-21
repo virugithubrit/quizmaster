@@ -31,9 +31,9 @@ public class CheckValidation {
 					try {
 						// inputStudentData() method..if user not login login then used
 						RegistrationLoginData isd = new RegistrationLoginData();
-						isd.inputStudentData();
-						 id=ScoreStoreDB.fetchStudentId(name);
-
+						String name1=isd.inputStudentData();
+						id=ScoreStoreDB.fetchStudentId(name1);
+                         System.out.println("registe"+id);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

@@ -1,23 +1,20 @@
 package com.topscore;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
+import com.register.RegistrationPage;
 
 public class getTopScore {
 
 	public void getScore() {
-		String url = "jdbc:mysql://localhost:3306/quizmaster";
-		String user = "root";
-		String password = "root";
 
 		try {
 			String sql = "SELECT s.first_name, s.last_name, sc.total_score, sc.grade " + "FROM student s "
 					+ "JOIN score sc ON s.id = sc.student_id "
 					+ "WHERE sc.total_score = (SELECT MAX(total_score) FROM score)";
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(url, user, password);
+			Connection conn = RegistrationPage.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
 			ResultSet rs = pstmt.executeQuery();

@@ -1,7 +1,6 @@
 package com.login;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,13 +11,10 @@ import com.register.UserRegisterData;
 public class LoginPage {
 	// ----------This method for user login successfully---//
 	public boolean getUserData(UserRegisterData srd) {
-		
-		RegistrationPage rp = new RegistrationPage();
-		
 		// Connection con1 = getConnection();
 		String query = "select * from student where username=? and password=?";
 		// System.out.println("c execute");
-		try (Connection con1 = rp.getConnection();
+		try (Connection con1 = RegistrationPage.getConnection();
 
 				PreparedStatement pst = con1.prepareStatement(query)) {
 

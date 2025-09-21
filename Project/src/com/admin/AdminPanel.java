@@ -1,5 +1,6 @@
 package com.admin;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.addquestions.TakeInput;
@@ -10,15 +11,15 @@ import com.scorebyid.StudentScoreById;
 import com.topscore.getTopScore;
 
 public class AdminPanel {
-
-	private static Scanner sc = new Scanner(System.in);
+	// --Exit and Retry Option (User Story 8.1)--
+    Scanner sc = new Scanner(System.in);
 	private boolean running = true;
 
 	public void exit() {
 
-		while (true) {// Exit and Retry Option (User Story 8.1)
+		while (true) {
 			System.out.print("Do you want to continue? (Y/N): ");
-			String input = sc.next();
+			String input = sc.nextLine();
 
 			if (input.equalsIgnoreCase("Y")) {
 				break; // back to menu
@@ -32,7 +33,7 @@ public class AdminPanel {
 		}
 	}
 
-	public void adminControl() throws ClassNotFoundException {
+	public void adminControl() throws ClassNotFoundException, SQLException {
 		while (running) {
 			System.out.println("\n=== ADMIN OPERATIONS ===");
 			System.out.println("1. Add New Question");

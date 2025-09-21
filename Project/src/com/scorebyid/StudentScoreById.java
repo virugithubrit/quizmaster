@@ -1,7 +1,6 @@
 package com.scorebyid;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Scanner;
@@ -19,6 +18,7 @@ public class StudentScoreById {// Search Student Score by ID (User Story 3.3)
 			PreparedStatement ps = conn.prepareStatement(query);
 			System.out.println("Enter Student Id to fetch their record");
 			int studentId=sc.nextInt();
+			sc.nextLine(); // consume the '\n' new changes from patidev
 			ps.setInt(1, studentId);
 			ResultSet rs = ps.executeQuery();
 

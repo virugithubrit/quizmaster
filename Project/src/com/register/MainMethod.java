@@ -8,7 +8,8 @@ public class MainMethod {
 
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
-		QuizeMasterMethods.getQuizeMasterMethods();
+		QuizeMasterMethods qmm=new QuizeMasterMethods();
+		qmm.getQuizeMasterMethods();
 
 	}
 }

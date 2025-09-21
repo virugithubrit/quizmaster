@@ -45,34 +45,59 @@ public class ScoreStoreDB {
 		}
 		return 0; // 0 if not found
 	}
-
 	// --this method fetch the score and grade from the database--
-	public static void getScoreData() {
-		int n = 1;
-		n++;
+	public static void getScoreData(int id) {
+		int n =1;
+		
 		Connection con = RegistrationPage.getConnection();
 		try {
 			PreparedStatement ps = con
-					.prepareStatement("select total_score,grade,feedback from score where score_id=?");
+					.prepareStatement("select total_score,grade,feedback from score where student_id=?");
 			ps.setLong(1, n);
-			
+			n++;
 			try (ResultSet rs = ps.executeQuery()) {
 				if (rs.next()) {
 					int totalScore = rs.getInt("total_score");
 					String grade = rs.getString("grade");
 					String message = rs.getString("feedback");
-
+              
 					// Print in the requested format
 					System.out.println("Your Score: " + totalScore + " / 10");
 					System.out.println("Your Grade: " + grade);
 					System.out.println("Feedback: " + message);
 				} else {
-					System.out.println("No record found for id=n" + n);
+					System.out.println("No record found for id= "+n);
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void getScoreByUsername(String username) {
+	    String sql = """
+	        SELECT s.total_score, s.grade, s.feedback
+	        FROM score s
+	        JOIN student st ON s.student_id = st.id
+	        WHERE st.username = ?
+	    """;
+
+	    try (Connection con = RegistrationPage.getConnection();
+	         PreparedStatement ps = con.prepareStatement(sql)) {
+
+	        ps.setString(1, username);
+	        try (ResultSet rs = ps.executeQuery()) {
+	            if (rs.next()) {
+	                System.out.println("Your Score: " + rs.getInt("total_score") + " / 10");
+	                System.out.println("Your Grade: " + rs.getString("grade"));
+	                System.out.println("Feedback: " + rs.getString("feedback"));
+	            } else {
+	                System.out.println("No record found for username = " + username);
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 	}
 
 }

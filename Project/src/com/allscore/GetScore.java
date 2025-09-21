@@ -1,10 +1,12 @@
 package com.allscore;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class GetScore {
 
-	public void getAllScore() {// View All Student Scores (Admin) (User Story 3.2)
+	// --View All Student Scores (Admin) (User Story 3.2)--
+	public void getAllScore() throws SQLException {
 
 		GetStudentInfo gs = new GetStudentInfo();
 		List<StudentScore> studentScores = gs.getAllStudentScores();
