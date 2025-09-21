@@ -96,8 +96,12 @@ public class AdminPanel {
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException {
-        AdminPanel admin = new AdminPanel();
-        admin.adminControl(); // Start the admin panel
-    }
+		
+		AdminPanel ad = new AdminPanel();
+		ad.adminControl();
+		
+	}
+		
+		
 
 }
